@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 2 — The Party in Motion (jQuery Effects & Animations)</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Load jQuery before our script. -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div class="page-wrap">
+    <!-- Page title -->
+    <header class="top-header">
+      <h1>Task 2. The Party in Motion</h1>
+      <p>Click a <b>guest</b> to open their card &amp; move them, click <b>Sort by time</b> in any room, or click a <b>case</b> for Spotlight (and <b>Clear</b> to reset). (<a href="../task1/index.html">← Back to Task 1</a>)</p>
+    </header>
+
+    <!-- Party house -->
+    <div class="house-wrapper">
+      <!-- Roof -->
+      <div class="roof">
+        <svg class="roof-svg" viewBox="0 0 1200 175" preserveAspectRatio="none">
+          <defs>
+            <!-- Roof texture -->
+            <pattern id="roofBricks" width="48" height="20" patternUnits="userSpaceOnUse">
+              <rect width="48" height="20" fill="#6e4832"/>
+              <path d="M0 10 H48 M24 0 V10 M0 10 V20" stroke="#593825" stroke-width="2"/>
+            </pattern>
+            <!-- Chimney texture -->
+            <pattern id="chimneyBricks" width="32" height="16" patternUnits="userSpaceOnUse">
+              <rect width="32" height="16" fill="#9c523b"/>
+              <path d="M0 8 H32 M16 0 V8 M4 8 V16" stroke="#7d3e2b" stroke-width="1.8"/>
+            </pattern>
+          </defs>
+
+          <!-- Chimney -->
+          <rect x="866" y="22" width="54" height="95" fill="url(#chimneyBricks)" stroke="#452b1d" stroke-width="3"/>
+          <rect x="859" y="12" width="68" height="13" rx="4" fill="#452b1d"/>
+
+          <!-- Roof shape -->
+          <polygon points="32,156 600,14 1168,156" fill="url(#roofBricks)" stroke="#452b1d" stroke-width="11" stroke-linejoin="round"/>
+
+          <!-- Attic window -->
+          <circle cx="600" cy="60" r="18" fill="#fef9e6" stroke="#452b1d" stroke-width="4.5"/>
+          <line x1="600" y1="42" x2="600" y2="78" stroke="#452b1d" stroke-width="3.5"/>
+          <line x1="582" y1="60" x2="618" y2="60" stroke="#452b1d" stroke-width="3.5"/>
+
+          <!-- Roof beam -->
+          <rect x="14" y="150" width="1172" height="18" rx="6" fill="#452b1d"/>
+        </svg>
+
+        <div class="roof-banner">The Party, 19:30 – 22:30</div>
+      </div>
+
+      <!-- Floors and rooms are built from the party data. -->
+      <div id="house" class="house-body"></div>
+
+      <!-- Foundation, lawn, and legend -->
+      <div class="stone-base"></div>
+      <div class="lawn"></div>
+      <div class="foundation">
+        <div class="legend">
+          <div class="legend-group">
+            <span class="dot red" title="Red"></span>
+            <span class="dot blue" title="Blue"></span>
+            <span class="dot green" title="Green"></span>
+            <span class="dot black" title="Black"></span>
+            <span class="dot yellow" title="Yellow"></span>
+            <span class="dot purple" title="Purple"></span>
+            <span class="legend-label">Clothing color</span>
+          </div>
+
+          <div class="legend-group legend-center">
+            <span class="legend-item"><span class="legend-icon" id="leg-phone"></span> Phone</span>
+            <span class="legend-item"><span class="legend-icon" id="leg-glasses"></span> Glasses</span>
+            <span class="legend-item"><span class="legend-icon" id="leg-bag"></span> Bag</span>
+            <span class="legend-item"><span class="legend-icon" id="leg-cup"></span> Cup</span>
+            <span class="legend-item"><span class="legend-icon" id="leg-crumbs"></span> Cake crumbs</span>
+          </div>
+
+          <div class="legend-group">
+            <span class="legend-item"><span class="legend-icon" id="leg-clock"></span> Arrival time</span>
+            <span class="legend-item"><span class="aitu-mini-badge" id="leg-aitu"></span> AITU student</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detective panel, clear button, and task buttons -->
+    <section class="detective-panel">
+      <div class="panel-top-bar">
+        <div id="result-box" class="result-box">
+          <div class="result-title" id="result-question">Select a case below or click any guest in the house</div>
+          <div class="result-answer" id="result-names">Found: —</div>
+          <code class="result-code" id="result-chain">// jQuery chain will appear here</code>
+        </div>
+        <button type="button" id="clear-btn" class="clear-btn">Clear</button>
+      </div>
+
+      <div id="case-buttons" class="case-buttons"></div>
+    </section>
+  </div>
+
+</body>
+</html>
